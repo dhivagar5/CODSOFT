@@ -1,1 +1,41 @@
+*/
+package com.mycompany.currconvert;
 
+/**
+ *
+ * @author RAJ
+ */
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CurrencyConverter {
+    public static void main(String[] args) {
+        
+        Map<String, Double> exchangerates = new HashMap<>();
+        exchangerates.put("USD", 1.0);  
+        exchangerates.put("EUR", 0.85);
+        exchangerates.put("GBP", 0.73);
+        exchangerates.put("JPY", 113.0);
+
+        
+        try (Scanner scanner = new Scanner(System.in)) {
+            
+            System.out.println("Available currencies: USD, EUR, GBP, JPY");
+            System.out.println("Enter base currency: ");
+            String baseCurrency = scanner.nextLine().toUpperCase();
+            System.out.println("Enter target currency: ");
+            String targetCurrency = scanner.nextLine().toUpperCase();
+            
+             System.out.println("Enter the amount to convert: ");
+            double amount = scanner.nextDouble();
+            
+            
+            double exchangerate = exchangerates.get(targetCurrency) / exchangerates.get(baseCurrency);
+            double convertedAmount = amount * exchangerate;
+            
+            
+            System.out.printf("%.2f %s = %.2f %s%n", amount, baseCurrency, convertedAmount, targetCurrency);
+        }
+    }
+}
