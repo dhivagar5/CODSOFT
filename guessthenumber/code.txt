@@ -1,1 +1,51 @@
+import java.util.Random;
+import java.util.Scanner;
 
+public class GuessTheNumberGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        int minrange = 1;
+        int maxrange = 100;
+        int atemptslimit = 5;
+        int score = 0;
+
+        System.out.println("welcome to the guess the number game!");
+
+        do {
+            int targetnum = random.nextInt(maxrange - minrange + 1) + minrange;
+            int attempts = 0;
+            boolean correctguess = false;
+
+            System.out.printf("\nGuess the number between %d and %d:\n", minrange, maxrange);
+
+            while (attempts < attemptslimit && !correctguess) {
+                System.out.print("Enter your guess: ");
+                int userguess = scanner.nextInt();
+                attempts++;
+
+                if (userguess == targetNum){
+                    System.out.println("Congratulations! You guessed the correct number.");
+                    correctguess = true;
+                    score += attempts;
+                } else if (userguess < targetNumber) {
+                    System.out.println("Too low. Try again.");
+                } else {
+                    System.out.println("Too high. Try again.");
+                }
+            }
+
+            if (!correctguess) {
+                System.out.printf("Sorry, you have  reached the maximum attempts. The correct number was %d.\n", targetNumber);
+            }
+
+            System.out.print("Do you want to play again? (yes/no): ");
+        } while (scanner.next().equalsIgnoreCase("yes"));
+
+        System.out.println("\nGame Over. Your total score is: " + score);
+
+        
+        scanner.close();
+    }
+}
